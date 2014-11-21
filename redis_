@@ -11,7 +11,7 @@
 [ $port ] && port="-p $port"
 [ $socket ] && socket="-s $socket" 
 [ $password ] && passwd="-a $password"
-[ -z $instance ] && $instance=$(echo $0|cut -d'_' -f 2-)
+[ -z $instance ] && instance=$(echo $0|cut -d'_' -f 2-)
 rinfo="$(which redis-cli) $ip $port $socket $passwd info"
 
 if [ "$1" = "autoconf" ]; then
