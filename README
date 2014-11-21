@@ -11,20 +11,14 @@ To install : just copy the redis_ script to your $MUNIN_LIBDIR
 Then create a symbolic link like this:
 
   ln -s '/usr/share/munin/plugins/redis_' \
-        '/etc/munin/plugins/redis_127.0.0.1_6379'
+        '/etc/munin/plugins/redis_instance_name'
 
-Or let "munin-node-configure --shell | bash" do it for you.
+Data connection can be set in a config file ala /etc/munin/plugin-conf.d/redis_instance_name:
 
-To monitor remote servers (or monitor local Redis instances listening
-on non-defaults ports), create a symbolic link accordingly, ie. :
-/etc/munin/plugins/redis_remoteserverip_remoteserverport
-
-Passwords can be set in a config file ala /etc/munin/plugin-conf.d/redis:
-
-[redis_*]
+[redis_instance_name]
+env.ip 127.0.0.1
+env.port 6379
+env.socket /path/to/socket.sock
 env.password secret-password
+env.instance instance_name
 
-and/or
-
-[redis_remoteserverip_remoteserverport]
-env.passwod another-secret-password
